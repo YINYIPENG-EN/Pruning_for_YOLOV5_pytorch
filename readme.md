@@ -55,7 +55,7 @@
 python train.py --weights yolov5s.pt --cfg models/yolov5s.yaml --data data/mydata.yaml
 ```
 
-![点击并拖拽以移动](data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==)
+
 
 >  
 >           from  n   params  module                  arguments
@@ -120,7 +120,7 @@ YOLOv5与我之前写过的剪枝不同，v5在训练保存后的权重本身就
             included_layers.append(layer.cv2.conv)
 ```
 
-![点击并拖拽以移动](data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==)
+
 
  接下来在找到下面这行代码，amount为剪枝率，同样也是按需修改。【这里需要明白的一点，这里的剪枝率仅是对你要剪枝的所有层剪枝这么多，并不是把网络从头到尾全部剪，有些粉丝说我选了一层，剪枝率50%，怎么模型还那么大，没啥变化，这个就是他搞混了，他以为是对整个网络剪枝50%】。
 
@@ -136,7 +136,7 @@ pruning_plan = DG.get_pruning_plan(m, tp.prune_conv, idxs=strategy(m.weight, amo
 layer_pruning('../runs/train/exp/weights/best.pt')
 ```
 
-![点击并拖拽以移动](data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==)
+
 
  见到如下形式，就说明剪枝成功了，剪枝以后的权重会保存在model_data下，名字为layer_pruning.pt。
 
@@ -157,7 +157,7 @@ layer_pruning('../runs/train/exp/weights/best.pt')
 2022-09-29 12:30:50.691 | INFO     | __main__:layer_pruning:89 - 剪枝完成
 ```
 
-![点击并拖拽以移动](data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==)
+
 
 如果你仅仅就想剪一层，可以这样写：
 
@@ -187,8 +187,10 @@ python train.py --weights model_data/layer_pruning.pt --data data/mydata.yaml --
 python detect.py --weights model_data/layer_pruning.pt --source [你的图像路径]
 ```
 
-![点击并拖拽以移动](data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==)
+
 
 ------
 
 这里再说明一下！！本文章只是给大家造个轮子，具体最终的剪枝效果，需要根据自己的需求以及实际效果来实现，我对整个backbone剪枝80%后的微调训练反正是效果很不好，对SPPF后其他的层剪枝还稍微好点，网上也有很多人说对backbone剪枝效果不行。
+
+CSDN：https://blog.csdn.net/z240626191s/article/details/127103705
