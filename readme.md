@@ -56,9 +56,7 @@ python train.py --weights yolov5s.pt --cfg models/yolov5s.yaml --data data/mydat
 ```
 
 
-
->  
->           from  n   params  module                  arguments
+>             from  n   params  module                  arguments
 >   0         -1  1    3520  models.common.Conv            [3, 32, 6, 2, 2]        
 >   1         -1  1   18560  models.common.Conv            [32, 64, 3, 2]         
 >   2         -1  1   18816  models.common.C3             [64, 64, 1]
@@ -97,7 +95,7 @@ python train.py --weights yolov5s.pt --cfg models/yolov5s.yaml --data data/mydat
 pip install torch_pruning==0.2.7
 ```
 
-![点击并拖拽以移动](data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==)
+ 
 
 YOLOv5与我之前写过的剪枝不同，v5在训练保存后的权重本身就保存了完整的model，即用的是torch.save(model,...)，而不是torch.save(model.state_dict(),...)，因此不需要单独在对网络结构保存一次。 
 
@@ -128,7 +126,7 @@ YOLOv5与我之前写过的剪枝不同，v5在训练保存后的权重本身就
 pruning_plan = DG.get_pruning_plan(m, tp.prune_conv, idxs=strategy(m.weight, amount=0.8))
 ```
 
-![点击并拖拽以移动](data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==)
+ 
 
 接下来调用剪枝函数，传入参数为自己的训练好的权重文件路径。
 
@@ -177,7 +175,7 @@ layer_pruning('../runs/train/exp/weights/best.pt')
 python train.py --weights model_data/layer_pruning.pt --data data/mydata.yaml --pt 
 ```
 
-![点击并拖拽以移动](data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==)
+ 
 
 # 4.剪枝后的模型预测
 
