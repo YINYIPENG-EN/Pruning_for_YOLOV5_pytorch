@@ -8,6 +8,8 @@
 
 4.剪枝后的模型预测
 
+如果还需要对剪枝后的模型进行知识蒸馏训练，可以参考我另一个repo：https://github.com/YINYIPENG-EN/Knowledge_distillation_Pruning_Yolov5.git
+
 # 1.训练自己的数据集
 
 将自己制作好的数据集放在dataset文件下，目录形式如下：
